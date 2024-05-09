@@ -37,3 +37,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+.card{
+  width: 600px;
+  min-height: 250px;
+  background: rgb(1, 1, 65);
+  color: white;
+  float: left;
+  margin: 25px;
+}
+
+.card a {
+  color: red;
+}
+

@@ -1,89 +1,102 @@
-import React from 'react'
+import {Component} from 'react'
 import './App.css'
 import './header.css'
 
 
+class WhoAmI extends Component{
 
-function App() {
-
-  const Vaqif = () => {
-    return(
-      <div className='elmeddin'>
-        <h1>Hello</h1> 
-       
-        <p>Lesson 1</p>
-      </div>
-    )
-  }
-
-  const Murad = () => {
-    return(
-      <div className="main">
-        
-      </div>
-    )
-  }
-
-
-  // const Ayxan = () =>{
-
-  //   // const myInputStyle = {
-  //   //   width:"200px", 
-  //   //   height:"50px", 
-  //   //   color:"green"
-  //   // }
-
-      // return(
-      //   <div className="ayxan_form">
-      //     <label htmlFor="yash">Yashinizi daxil edin</label>
-      //       <input type="text" 
-      //               placeholder='Yawinizi daxil edin'
-      //               id='yash'
-      //               style={{width:"200px", 
-      //               height:"50px", 
-      //               color:"green"}} />
-      //       <button >Send</button>
-      //   </div>
-      // );
-  // }
-  
-
-  class Ayxan extends React.Component{
-    render() {
-
-      const qeydiyyat = true
-      let Text
-      if(qeydiyyat){
-        Text = "Çıxış"
-      }else{
-        Text = "Giriş"
-      }
-
-      return(
-        <div className="ayxan_form">
-          <label htmlFor="yash">Yashinizi daxil edin</label>
-            <input type="text" 
-                    placeholder='Yawinizi daxil edin'
-                    id='yash'
-                    style={{width:"200px", 
-                    height:"50px", 
-                    color:"green"}} />
-            <button > {Text} </button>
-        </div>
-      );
+  constructor(props){
+    super(props)
+    this.state = {
+      count: 0,
+      text: "super",
+      position: "Soz daxil edin",
+      bg: "",
+      color:""
+      
     }
   }
 
+  kolbasa = () => {
+    // console.log(this)
+    this.setState(state => ({
+      count: state.count + 1
+    }))
 
-  return(
-    <div className="demo">
-      <Murad/>
-      <Vaqif/>
-      <Murad/>
-      <Murad/>
-      <Ayxan/>
-    </div>
-  );
+
+    this.setState({
+      text:"hello"
+    })
+
+    // this.setState(state => ({
+    //   text:"Trello"
+    // }))
+  }
+
+
+  changeText = (e , reng) =>{
+    console.log(reng)
+    this.setState({
+      position: e.target.value,
+      color: e.target.value
+    })
+
+    
+  }
+
+
+  // nextYear = () => {
+  
+  //   this.setState(state => ({
+  //     years: state.years + 1,
+  //     text: "Ela",
+  //     status: true
+  //   }))
+  //   console.log(this.state)
+  // }
+
+  render(){
+
+    // console.log(this.props)
+    const {name, surname, link} = this.props;
+    const {count, text, position, color} = this.state;
+
+  
+
+    return(
+      
+      <div className='card' style={{background: color}}>
+        <button onClick={this.kolbasa}>{text}</button>
+        <button>change red</button>
+        <button>change green</button>
+        <button>change blue</button>
+        <h1>My name is {name}, surname is {surname}. <br />  Klik: {count}.  </h1>
+        <a href={link}>Profile</a>
+        <input type="text" onChange={(e) => this.changeText(e, color)} />
+        <p>Text: {position}</p>
+      </div>
+    )
+  }
+
 }
+
+function App() {
+
+    
+      return(
+        
+        <div className="app">
+          <WhoAmI name="Rza" surname="Talibov" link="www.arrow.az" />
+          <WhoAmI name="Vaqif" surname="Huseynov" link="www.vaqif.az" />
+        </div>
+        
+      )
+
+}
+
+
+
+
+
 
 export default App;
